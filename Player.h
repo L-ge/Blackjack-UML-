@@ -7,23 +7,30 @@ class Player
 {
 private:
     double money;
+    char id;
     int player_card[11];
     int player_card_sum;
 public:
-    Player(int m);
-    ~Player();
+    Player();
     int count_playerpoints();
     void show_card();
-    void add_card(Dealer dealer);
+    virtual void add_card(Dealer* dealer);
+    void setId(char c);
+    char getId();
+    void setMoney(double m);
+    double getMoney();
+    void begin_card();
 };
 
 
-/*
 class PlayerA : public Player
 {
 public:
-    void set_money(double money);
+    PlayerA();
+    void add_card(Dealer* dealer);
+    void buildId(char c);
+    void buildMoney(double m);
 };
-*/
+
 
 #endif // PLAYER_H_INCLUDED

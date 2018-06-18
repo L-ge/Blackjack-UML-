@@ -1,42 +1,39 @@
 # depslib dependency file v1.0
-1529151119 source:f:\my c++\optional excercise\blackjack(uml)\card.cpp
+1529286622 source:f:\my c++\optional excercise\blackjack(uml)\card.cpp
 	"Card.h"
 	<windows.h>
 	"time.h"
 
-1529150935 f:\my c++\optional excercise\blackjack(uml)\card.h
+1529286624 f:\my c++\optional excercise\blackjack(uml)\card.h
 
-1529157824 source:f:\my c++\optional excercise\blackjack(uml)\setup.cpp
-	"setup.h"
+1529304744 source:f:\my c++\optional excercise\blackjack(uml)\setup.cpp
 	<iostream>
 	"Dealer.h"
 	"Player.h"
-
-1529157851 f:\my c++\optional excercise\blackjack(uml)\dealer.h
 	<iostream>
 
-1529157665 f:\my c++\optional excercise\blackjack(uml)\player.h
+1529295510 f:\my c++\optional excercise\blackjack(uml)\dealer.h
+
+1529286808 f:\my c++\optional excercise\blackjack(uml)\player.h
 	"Dealer.h"
 	<iostream>
 
-1529157665 source:f:\my c++\optional excercise\blackjack(uml)\dealer.cpp
+1529310460 source:f:\my c++\optional excercise\blackjack(uml)\dealer.cpp
 	"Dealer.h"
 	"Card.h"
-	"setup.h"
+	<iostream>
 
-1529157665 f:\my c++\optional excercise\blackjack(uml)\setup.h
-	"Dealer.h"
-	"Player.h"
+1529234084 f:\my c++\optional excercise\blackjack(uml)\setup.h
 
-1529157665 source:f:\my c++\optional excercise\blackjack(uml)\player.cpp
+1529284783 source:f:\my c++\optional excercise\blackjack(uml)\player.cpp
 	"Player.h"
 	"Card.h"
 	"Dealer.h"
-	"setup.h"
-
-1529157693 source:f:\my c++\optional excercise\blackjack(uml)\main_function.cpp
 	<iostream>
-	"setup.h"
+
+1529236972 source:f:\my c++\optional excercise\blackjack(uml)\main_function.cpp
+	<iostream>
 	"Dealer.h"
 	"Player.h"
+	<iostream>
 

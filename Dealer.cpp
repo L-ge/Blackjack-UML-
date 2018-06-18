@@ -1,66 +1,54 @@
 #include "Dealer.h"
 #include "Card.h"
-#include "setup.h"
+#include <iostream>
+using namespace std;
 
-Dealer::Dealer(int m)
+Dealer* Dealer::getInstance(double m)
+{
+    Dealer* instance = new Dealer(m);
+    return instance;
+}
+
+Dealer::Dealer(double m)
+{
+    money = m;
+}
+
+void Dealer::begin_card()
 {
     Card card;
-    money = m;
-    dealer_card_sum = 2;
+    dealer_card_sum = 0;
     dealer_points = 0;
-
-    int temp = card.getCardB();
-    if (temp > 10)
+    int temp = card.getCardA();
+    while (dealer_points < 17)
     {
-        dealer_card[0] = 10;
-        dealer_points += 10;
-    }
-    else if (temp == 1)
-    {
-        int t1 = rand() % 2;
-        if (t1 == 1 && dealer_points <= 11)
+        temp = card.getCardC(temp);
+        if (temp > 10)
         {
-            dealer_card[0] = 11;
-            dealer_points += 11; // 即A为10.
+            dealer_card[dealer_card_sum] = 10;
+            dealer_points += 10;
+        }
+        else if (temp == 1)
+        {
+            int t1 = rand() % 2;
+            if (t1 == 1 && dealer_points <= 11)
+            {
+                dealer_card[dealer_card_sum] = 11;
+                dealer_points += 11; // 即A为10.
+            }
+            else
+            {
+                dealer_card[dealer_card_sum] = 1;
+                dealer_points += 1; // 即A为1.
+            }
         }
         else
         {
-            dealer_card[0] = 1;
-            dealer_points += 1; // 即A为1.
+            dealer_card[dealer_card_sum] = temp;
+            dealer_points += temp;
         }
+        dealer_card_sum++;
     }
-    else
-    {
-        dealer_card[0] = temp;
-        dealer_points += temp;
-    }
-
-    temp = card.getCardA();
-    if (temp > 10)
-    {
-        dealer_card[1] = 10;
-        dealer_points += 10;
-    }
-    else if (temp == 1)
-    {
-        int t1 = rand() % 2;
-        if (t1 == 1 && dealer_points <= 11)
-        {
-            dealer_card[1] = 11;
-            dealer_points += 11; // 即A为10.
-        }
-        else
-        {
-            dealer_card[1] = 1;
-            dealer_points += 1; // 即A为1.
-        }
-    }
-    else
-    {
-        dealer_card[1] = temp;
-        dealer_points += temp;
-    }
-
 }
 
 void Dealer::show_card()
@@ -99,41 +87,6 @@ void Dealer::show_allcard()
             cout << dealer_card[i] << ' ';
     }
     cout << endl;
-}
-
-void Dealer::add_card()
-{
-    while (get_dealer_points() < 17)
-    {
-        Card card;
-        int temp = card.getCardA();
-        if (temp > 10)
-        {
-            dealer_card[dealer_card_sum] = 10;
-            dealer_points += 10;
-        }
-        else if (temp == 1)
-        {
-            int t1 = rand() % 2;
-            if (t1 == 1 && dealer_points <= 11)
-            {
-                dealer_points += 11; // 即A为10.
-                dealer_card[dealer_card_sum] = 11;
-            }
-            else
-            {
-                dealer_points += 1; // 即A为1.
-                dealer_card[dealer_card_sum] = 1;
-            }
-        }
-        else
-        {
-            dealer_card[dealer_card_sum] = temp;
-            dealer_points += temp;
-        }
-        dealer_card_sum++;
-    }
-
 }
 
 int Dealer::get_dealer_points()

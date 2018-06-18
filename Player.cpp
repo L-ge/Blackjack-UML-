@@ -1,14 +1,18 @@
 #include "Player.h"
 #include "Card.h"
 #include "Dealer.h"
-#include "setup.h"
+#include <iostream>
 
 using namespace std;
 
-Player::Player(int m)
+Player::Player()
+{
+
+}
+
+void Player::begin_card()
 {
     Card card;
-    money = m;
     player_card_sum = 2;
     int temp = card.getCardA();
     if (temp > 10)
@@ -48,11 +52,6 @@ Player::Player(int m)
     }
 }
 
-Player::~Player()
-{
-    delete [] player_card;
-}
-
 int Player::count_playerpoints()
 {
     int playerpoints = 0;
@@ -65,7 +64,7 @@ int Player::count_playerpoints()
 
 void Player::show_card()
 {
-    cout << "现在玩家手中的牌是: ";
+    cout << "现在" << getId() << "玩家手中的牌是: ";
     for (int i = 0; i < player_card_sum; ++i)
     {
         if (player_card[i] == 1)
@@ -82,7 +81,7 @@ void Player::show_card()
     cout << endl;
 }
 
-void Player::add_card(Dealer dealer)
+void Player::add_card(Dealer* dealer)
 {
     Card card;
     int temp = card.getCardA();
@@ -109,22 +108,60 @@ void Player::add_card(Dealer dealer)
         player_card[player_card_sum] = temp;
     }
     player_card_sum++;
+}
+
+void Player::setId(char c)
+{
+    id = c;
+}
+
+char Player::getId()
+{
+    return id;
+}
+
+void Player::setMoney(double m)
+{
+    money = m;
+}
+
+double Player::getMoney()
+{
+    return money;
+}
 
 
+
+PlayerA::PlayerA() : Player()
+{
+
+}
+
+void PlayerA::add_card(Dealer* dealer)
+{
+    Player::add_card(dealer);
     if (count_playerpoints() > 21)
     {
-        cout << "玩家已经爆了！！！\n";
+        cout << "玩家A已经爆了！！！\n";
         show_card();
-        dealer.show_allcard();
-        setup s;
-        s.game_over();
+        (*dealer).show_allcard();
+        exit(0);
     }
-    else if (dealer.get_dealer_points() > 21)
+    else if ((*dealer).get_dealer_points() > 21)
     {
         cout << "庄家已经爆了！\n";
         show_card();
-        dealer.show_allcard();
-        setup s;
-        s.game_over();
+        (*dealer).show_allcard();
+        exit(0);
     }
+}
+
+void PlayerA::buildId(char c)
+{
+    Player::setId(c);
+}
+
+void PlayerA::buildMoney(double m)
+{
+    Player::setMoney(m);
 }

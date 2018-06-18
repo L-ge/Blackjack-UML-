@@ -14,3 +14,9 @@ int Card::getCardB()
     return rand() % 13 + 1;
 }
 
+int Card::getCardC(int seed)
+{
+    srand(seed);
+    return rand() % 13 + 1;
+}
+
